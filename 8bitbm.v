@@ -33,7 +33,7 @@ reg signed [7:0] acc;
 
 
 always @(posedge clk) begin
-    if (rst) begin //Initialize the values when reset is ON
+    if (rst) begin 
         n <= 8;
         acc = 8'b00000000;
         q_2 = 1'b0;
@@ -64,18 +64,18 @@ endmodule
 
 module tb_booth_multiplier;
 
-    // Inputs
+
     reg clk;
     reg rst;
     reg signed [7:0] multiplicand;
     reg signed [7:0] multiplier;
 
-    // Output
+
     wire signed [15:0] product;
     wire signed [16:0] result;
     wire [3:0] n;
     wire [16:0] inv;
-    // Instantiate the Unit Under Test (UUT)
+
     booth_multiplier uut (
         .clk(clk),
         .rst(rst),
@@ -108,7 +108,7 @@ module tb_booth_multiplier;
         multiplicand = 8'd12;
         multiplier = 8'd11;
         #10;rst = 0;
-        #100; // Wait for multiplication to complete
+        #100;
         $display("Test Case 1: %d * %d = %d", multiplicand, multiplier, product);
         
         // Test Case 2: Negative * Positive
@@ -116,7 +116,7 @@ module tb_booth_multiplier;
         multiplicand = -8'd12;
         multiplier = 8'd10;
         #20 rst = 0;
-        #100; // Wait for multiplication to complete
+        #100;
         $display("Test Case 2: %d * %d = %d", multiplicand, multiplier, product);
 
 
